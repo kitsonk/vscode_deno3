@@ -1,0 +1,89 @@
+{
+	"name": "vscode-deno",
+	"displayName": "Deno Language Server",
+	"description": "A language server client for Deno",
+	"author": "Deno Land Inc.",
+	"license": "MIT",
+	"version": "3.0.0-pre",
+	"icon": "deno.png",
+	"galleryBanner": {
+		"color": "#3B3738",
+		"theme": "dark"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/denoland/vscode_deno3"
+	},
+	"bugs": {
+		"url": "https://github.com/denoland/vscode_deno/issues"
+	},
+	"publisher": "deno-land",
+	"categories": [
+		"Programming Languages",
+		"Formatters",
+		"Linters",
+		"Other"
+	],
+	"keywords": [
+		"deno"
+	],
+	"engines": {
+		"vscode": "^1.51.0"
+	},
+	"activationEvents": [
+		"onLanguage:typescript",
+		"onLanguage:typescriptreact",
+		"onLanguage:javascript",
+		"onLanguage:javascriptreact"
+	],
+	"main": "./client/out/extension",
+	"contributes": {
+		"configuration": {
+			"type": "object",
+			"title": "Deno Language Service",
+			"properties": {
+				"deno.enable": {
+					"type": "boolean",
+					"default": false,
+					"markdownDescription": "Controls if the Deno Language Server is enabled.\n\n**Not recommended to be enabled globally.**",
+					"scope": "resource",
+					"examples": [
+						true,
+						false
+					]
+				},
+				"deno.unstable": {
+					"type": "boolean",
+					"default": false,
+					"markdownDescription": "Controls if code will be type checked with Deno's unstable APIs (e.g. passing `--unstable` on the command line).\n\n**Not recommended to be enabled globally.**",
+					"scope": "resource",
+					"examples": [
+						true,
+						false
+					]
+				},
+				"deno.lint": {
+					"type": "boolean",
+					"default": false,
+					"markdownDescription": "Controls if linting information will be provided by the Deno Language Server.\n\n**Not recommended to be enabled globally.**",
+					"scope": "resource",
+					"examples": [
+						true,
+						false
+					]
+				}
+			}
+		}
+	},
+	"scripts": {
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -b",
+		"fmt": "deno fmt client/src",
+		"watch": "tsc -b -w",
+		"postinstall": "cd client && npm install && cd .."
+	},
+	"devDependencies": {
+		"@types/node": "^14.14.7",
+		"typescript": "^4.0.5"
+	}
+}
